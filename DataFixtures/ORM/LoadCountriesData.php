@@ -86,7 +86,7 @@ class LoadCountriesData extends DataFixture
         $countries = Intl::getRegionBundle()->getCountryNames($this->defaultLocale);
 
         if (Intl::isExtensionLoaded()) {
-            $localisedCountries = array('es_ES' => Intl::getRegionBundle()->getCountryNames('es_ES'));
+            $localisedCountries = array('en_US' => Intl::getRegionBundle()->getCountryNames('en_US'));
         } else {
             $localisedCountries = array();
         }
