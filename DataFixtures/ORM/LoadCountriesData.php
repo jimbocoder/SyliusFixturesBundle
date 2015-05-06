@@ -92,7 +92,10 @@ class LoadCountriesData extends DataFixture
         }
 
         foreach ($countries as $isoName => $name) {
-            $country = $countryRepository->createNew();
+            $country = $countryRepository->findOneByIsoName($isoName);
+            if ( !$country ) {
+                $country = $countryRepository->createNew();
+            }
 
             $country->setCurrentLocale($this->defaultLocale);
             $country->setName($name);
@@ -103,10 +106,6 @@ class LoadCountriesData extends DataFixture
             }
 
             $country->setIsoName($isoName);
-
-            if ('US' === $isoName) {
-                $this->addUsStates($country);
-            }
 
             $manager->persist($country);
 
